@@ -36,6 +36,7 @@ routes.delete('/parceiros/:id', authMiddleware, parceirosController.delete);
 
 //rotas cases
 routes.get('/cases', multer(multerConfig).single('file'), casesController.index);
+routes.get('/cases/:id', casesController.find);
 routes.post('/cases', authMiddleware, multer(multerConfig).single('file'), casesController.create);
 routes.put('/cases/:id', authMiddleware, multer(multerConfig).single('file'), casesController.update);
 routes.delete('/cases/:id', authMiddleware, casesController.delete);

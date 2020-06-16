@@ -5,9 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('parceiros').insert([
-        {imagem: 'imagem.png', nome: 'Lenovo', site: 'lenovo.com.br', isValid: true},
-        {imagem: 'imagem.png', nome: 'Fujitsu', site: 'fujtsu.com.br', isValid: true},
-        {imagem: 'imagem.png', nome: 'AOC', site: 'aoc.com.br', isValid: true}
+        {imagem: 'Lenovo-logo.png', nome: 'Lenovo', site: 'http://lenovo.com.br', isValid: true},
+        {imagem: 'fujitsu-logo.png', nome: 'Fujitsu', site: 'http://fujtsu.com.br', isValid: true},
+        {imagem: 'NetScout_logo.png', nome: 'AOC', site: 'http://aoc.com.br', isValid: true},
+        {imagem: 'Nutanix_Logo.png', nome: 'AOC', site: 'http://nutanix.com', isValid: true},
+        {imagem: 'Philips-logo.png', nome: 'AOC', site: 'http://philips.com.br', isValid: true},
+        {imagem: 'polycom-logo.png', nome: 'AOC', site: 'http://polycom.com', isValid: true},
       ]);
     });
 };

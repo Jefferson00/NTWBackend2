@@ -8,6 +8,18 @@ module.exports = {
         return res.json(cases)
     },
 
+    async find (req, res, next){
+
+        try {
+            const id = req.params
+            const cs = await connection('cases').select('*').where('id', id);
+    
+            return res.json(cs)
+        } catch (error) {
+            next(error) 
+        }
+    },
+
     async create (req, res, next){
         try {
             const {orgao, descricao, categoria} = req.body
