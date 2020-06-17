@@ -7,10 +7,10 @@ exports.seed = function(knex) {
       return knex('parceiros').insert([
         {imagem: 'Lenovo-logo.png', nome: 'Lenovo', site: 'http://lenovo.com.br', isValid: true},
         {imagem: 'fujitsu-logo.png', nome: 'Fujitsu', site: 'http://fujtsu.com.br', isValid: true},
-        {imagem: 'NetScout_logo.png', nome: 'AOC', site: 'http://aoc.com.br', isValid: true},
-        {imagem: 'Nutanix_Logo.png', nome: 'AOC', site: 'http://nutanix.com', isValid: true},
-        {imagem: 'Philips-logo.png', nome: 'AOC', site: 'http://philips.com.br', isValid: true},
-        {imagem: 'polycom-logo.png', nome: 'AOC', site: 'http://polycom.com', isValid: true},
+        {imagem: 'aoc-logo.png', nome: 'AOC', site: 'http://aoc.com.br', isValid: true},
+        {imagem: 'Nutanix_Logo.png', nome: 'Nutanix', site: 'http://nutanix.com', isValid: true},
+        {imagem: 'Philips-logo.png', nome: 'Philips', site: 'http://philips.com.br', isValid: true},
+        {imagem: 'polycom-logo.png', nome: 'Polycom', site: 'http://polycom.com', isValid: true},
       ]);
     });
 };

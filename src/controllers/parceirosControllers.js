@@ -8,6 +8,18 @@ module.exports = {
         return res.json(parceiros)
     },
 
+    async find(req, res, next){
+        try {
+            const {nome} = req.params
+
+            const parceiro = await connection('parceiros').select('*').where('nome', nome).first()
+
+            return res.json(parceiro)
+        } catch (error) {
+            next(error) 
+        }
+    },
+
     async create (req, res, next){
         try {
             const {nome, site, isValid} = req.body

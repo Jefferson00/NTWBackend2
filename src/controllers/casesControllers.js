@@ -11,7 +11,7 @@ module.exports = {
     async find (req, res, next){
 
         try {
-            const id = req.params
+            const {id} = req.params
             const cs = await connection('cases').select('*').where('id', id);
     
             return res.json(cs)

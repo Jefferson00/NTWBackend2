@@ -1,6 +1,5 @@
 const connection = require('../database/index')
 const fs = require('fs')
-const { find } = require('./atasControllers')
 
 const path = "C:/Users/sdiaj/Documents/www/BackendNTW/tmp/uploads/"
 module.exports = {

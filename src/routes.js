@@ -30,6 +30,7 @@ routes.delete('/produtos/:id', authMiddleware, produtoController.delete);
 
 //rotas parceiros
 routes.get('/parceiros', multer(multerConfig).single('file'), parceirosController.index);
+routes.get('/parceiros/:nome', parceirosController.find);
 routes.post('/parceiros', authMiddleware, multer(multerConfig).single('file'), parceirosController.create);
 routes.put('/parceiros/:id', authMiddleware, multer(multerConfig).single('file'), parceirosController.update);
 routes.delete('/parceiros/:id', authMiddleware, parceirosController.delete);
