@@ -34,6 +34,16 @@ module.exports = {
         }
     },
 
+    async find (req, res, next){
+        try {
+            const {id}= req.params
+            const user = await connection('users').select('*').where('id', id).first()
+            return res.json(user)
+        } catch (error) {
+            next(error)
+        }
+    },
+
     //create user ok
     //só cria se um usuario admin estiver logado
     async create(req, res, next){
@@ -43,13 +53,13 @@ module.exports = {
             if (!await verifyUserAdmin(req)){
                 return res.status(401).send({error: 'operação não permitida'});
             }else{
-                const {name, password, access} = req.body;
+                const {name, password} = req.body;
                 const hash = await bcrypt.hash(password, 10)
            
                 await connection('users').insert({
                     name,
                     password:hash,
-                    access,
+                    access:1,
                 });
                 return res.status(201).send({name});
             }

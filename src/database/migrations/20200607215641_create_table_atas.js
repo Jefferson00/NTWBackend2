@@ -10,7 +10,7 @@ exports.up = function(knex) {
         table.integer('quantidade').notNullable();
         table.string('garantia').notNullable();
         table.string('validade').notNullable();
-        table.decimal('valor').notNullable();
+        table.decimal('valor',17,2).notNullable();
     })
 };
 

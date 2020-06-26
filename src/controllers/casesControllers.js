@@ -40,19 +40,30 @@ module.exports = {
     async update(req, res, next){
         try {
             const {orgao, descricao, categoria} = req.body
-            const imagem = req.file.filename;
             const {id} = req.params;
-
-            await connection('cases').where('id', id)
-            .update(
-                {
-                'imagem': imagem,
-                'orgao': orgao,
-                'descricao': descricao,
-                'categoria': categoria
-                }
-                );
-                return res.send();
+            if(req.file){
+                const imagem = req.file.filename;
+                await connection('cases').where('id', id)
+                .update(
+                    {
+                    'imagem': imagem,
+                    'orgao': orgao,
+                    'descricao': descricao,
+                    'categoria': categoria
+                    }
+                    );
+                    return res.send();
+            }else{
+                await connection('cases').where('id', id)
+                .update(
+                    {
+                    'orgao': orgao,
+                    'descricao': descricao,
+                    'categoria': categoria
+                    }
+                    );
+                    return res.send();
+            }
         } catch (error) {
             next(error)
         }

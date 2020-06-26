@@ -25,6 +25,7 @@ module.exports = {
         try {
             const {categoria, modelo, fabricante, caracteristica, catalogo, isEOL} = req.body
             const imagem = req.file.filename;
+            console.log(imagem)
             await connection('produtos').insert({
                 categoria,
                 modelo, 
@@ -44,20 +45,34 @@ module.exports = {
     async update(req, res, next){
         try {
             const {categoria, modelo, fabricante, caracteristica, catalogo, isEOL} = req.body
-            const imagem = req.file.path+req.file.filename;
-            const {id} = req.params;
-
-            await connection('produtos').where('id', id)
-            .update(
-                {'categoria': categoria,
-                'modelo': modelo,
-                'fabricante': fabricante,
-                'caracteristica': caracteristica,
-                'imagem': imagem,
-                'catalogo':catalogo,
-                'isEOL': isEOL}
-                );
-                return res.send();
+            const {id_produto} = req.params;
+            
+            
+            if(req.file){
+                const imagem = req.file.filename;
+                await connection('produtos').where('id_produto', id_produto)
+                .update(
+                    {'categoria': categoria,
+                    'modelo': modelo,
+                    'fabricante': fabricante,
+                    'caracteristica': caracteristica,
+                    'imagem': imagem,
+                    'catalogo':catalogo,
+                    'isEOL': isEOL}
+                    );
+                    return res.send();
+            }else{
+                await connection('produtos').where('id_produto', id_produto)
+                .update(
+                    {'categoria': categoria,
+                    'modelo': modelo,
+                    'fabricante': fabricante,
+                    'caracteristica': caracteristica,
+                    'catalogo':catalogo,
+                    'isEOL': isEOL}
+                    );
+                    return res.send();
+            }
         } catch (error) {
             next(error)
         }
@@ -65,12 +80,13 @@ module.exports = {
 
     async delete(req, res, next){
         try {
-            const {id} = req.params;
-            const imageName = await connection('produtos').select('imagem').where('id', id).first();
+            const {id_produto} = req.params;
+            console.log(id_produto)
+            const imageName = await connection('produtos').select('imagem').where('id_produto', id_produto).first();
             const img = imageName.imagem
             
             const pathDeleteImage = path+img
-            await connection('produtos').where('id', id).delete();
+            await connection('produtos').where('id_produto', id_produto).delete();
             console.log(pathDeleteImage)
             try {
                 fs.unlinkSync(pathDeleteImage);

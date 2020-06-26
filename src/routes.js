@@ -5,6 +5,7 @@ const produtoController = require('./controllers/produtoControllers');
 const parceirosController = require('./controllers/parceirosControllers');
 const casesController = require('./controllers/casesControllers');
 const atasController = require('./controllers/atasControllers');
+const mailController = require('./controllers/mailController');
 
 const authMiddleware = require('./middleware/auth')
 
@@ -16,6 +17,7 @@ const routes = express.Router();
 
 //rotas users
 routes.get('/users', authMiddleware, usersController.index);
+routes.get('/users/:id', usersController.find);
 routes.post('/login', usersController.login);
 routes.post('/users', authMiddleware, usersController.create);
 routes.put('/users/:id', authMiddleware, usersController.update);
@@ -25,8 +27,8 @@ routes.delete('/users/:id', authMiddleware, usersController.delete);
 routes.get('/produtos', multer(multerConfig).single('file'), produtoController.index);
 routes.get('/produtos/:categoria',  produtoController.find);
 routes.post('/produtos', authMiddleware, multer(multerConfig).single('file'), produtoController.create);
-routes.put('/produtos/:id', authMiddleware, multer(multerConfig).single('file'), produtoController.update);
-routes.delete('/produtos/:id', authMiddleware, produtoController.delete);
+routes.put('/produtos/:id_produto', authMiddleware, multer(multerConfig).single('file'), produtoController.update);
+routes.delete('/produtos/:id_produto', authMiddleware, produtoController.delete);
 
 //rotas parceiros
 routes.get('/parceiros', multer(multerConfig).single('file'), parceirosController.index);
@@ -50,5 +52,7 @@ routes.put('/atas/:id_atas', authMiddleware, atasController.update);
 routes.delete('/atas/:id_atas', authMiddleware, atasController.delete);
 routes.post('/send/:id_atas',  atasController.sendMail);
 
+//Rota de envio de email
+routes.post('/sendMailContact', mailController.sendMail)
 
 module.exports = routes;
