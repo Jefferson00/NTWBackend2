@@ -6,12 +6,14 @@ const parceirosController = require('./controllers/parceirosControllers');
 const casesController = require('./controllers/casesControllers');
 const atasController = require('./controllers/atasControllers');
 const mailController = require('./controllers/mailController');
+const logsController = require('./controllers/logsControllers');
 
 const authMiddleware = require('./middleware/auth')
 
 /* multer para upload de arquivos */
 const multer = require('multer')
-const multerConfig = require('./config/multer')
+const multerConfig = require('./config/multer');
+const logsControllers = require('./controllers/logsControllers');
 
 const routes = express.Router(); 
 
@@ -51,6 +53,11 @@ routes.post('/atas', authMiddleware, atasController.create);
 routes.put('/atas/:id_atas', authMiddleware, atasController.update);
 routes.delete('/atas/:id_atas', authMiddleware, atasController.delete);
 routes.post('/send/:id_atas',  atasController.sendMail);
+
+//rotas logs
+routes.get('/logs', authMiddleware, logsControllers.index)
+routes.get('/logs/:id_user', authMiddleware, logsControllers.find)
+routes.post('/logs', authMiddleware, logsControllers.create)
 
 //Rota de envio de email
 routes.post('/sendMailContact', mailController.sendMail)

@@ -5,6 +5,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
+      timezone: "utc-3",
       database:"ntw_db",
       user:"postgres",
       password: "12345"
