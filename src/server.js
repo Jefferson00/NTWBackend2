@@ -1,7 +1,7 @@
 const express = require("express")
 const routes = require('./routes')
-const knexfile = require("../knexfile")
-const pathApp = knexfile.production.directory
+//const knexfile = require("../knexfile")
+const pathApp = require('../dir')
 
 const cors = require('cors')
 const { text } = require("express")
