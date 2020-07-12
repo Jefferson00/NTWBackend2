@@ -15,7 +15,7 @@ app.use('/static', express.static(__dirname+'/tmp/uploads'))
 
 app.get("/getImage/:img", function(req, res){
     const {img} = req.params
-    res.sendFile(process.env.PATH_APP+"/tmp/uploads/"+img)
+    res.sendFile(__dirname+"/tmp/uploads/"+img)
 })
 
 // catch all
