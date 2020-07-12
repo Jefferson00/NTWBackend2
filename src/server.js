@@ -1,5 +1,7 @@
 const express = require("express")
 const routes = require('./routes')
+const knexfile = require("../knexfile")
+const pathApp = knexfile.production.directory
 
 const cors = require('cors')
 const { text } = require("express")
@@ -15,7 +17,7 @@ app.use('/static', express.static(__dirname+'/tmp/uploads'))
 
 app.get("/getImage/:img", function(req, res){
     const {img} = req.params
-    res.sendFile(__dirname+"/../tmp/uploads/"+img)
+    res.sendFile(pathApp+"/tmp/uploads/"+img)
 })
 
 // catch all

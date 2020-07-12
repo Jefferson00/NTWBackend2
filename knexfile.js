@@ -16,7 +16,8 @@ module.exports = {
     },
     seeds: {
       directory: `${__dirname}/src/database/seeds`
-    }
+    },
+    directory: `${__dirname}`
   },
 
   staging: {
@@ -32,7 +33,8 @@ module.exports = {
     },
     seeds: {
       directory: `${__dirname}/src/database/seeds`
-    }
+    },
+    directory: `${__dirname}`
   },
 
   production: {
@@ -48,7 +50,8 @@ module.exports = {
     },
     seeds: {
       directory: `${__dirname}/src/database/seeds`
-    }
+    },
+    directory: `${__dirname}`
   }
 
 };
